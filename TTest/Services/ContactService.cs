@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Diagnostics;
 using TTest.Mvvm.Models;
-using TTest.Mvvm.ViewModels;
 
 namespace TTest.Services
 {
@@ -22,24 +21,24 @@ namespace TTest.Services
             try
             {
                 var users = ReadFromFile();
-                if (!string.IsNullOrEmpty(users)) 
+                if (!string.IsNullOrEmpty(users))
                 {
                     _contactsService = JsonConvert.DeserializeObject<List<ContactModel>>(users);
                 }
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); }
-            return _contactsService;            
+            return _contactsService;
         }
 
         private static void SaveToList(string contacts)
         {
             try
-            { 
+            {
                 using var sw = new StreamWriter(filePath);
                 sw.Write(contacts);
                 ContactsUpdated?.Invoke();
             }
-            catch (Exception ex) { Debug.WriteLine(ex.Message); }  
+            catch (Exception ex) { Debug.WriteLine(ex.Message); }
         }
         public static string ReadFromFile()
         {
@@ -47,7 +46,7 @@ namespace TTest.Services
             {
                 if (File.Exists(filePath))
                 {
-                   return File.ReadAllText(filePath);
+                    return File.ReadAllText(filePath);
                 }
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); }
@@ -65,11 +64,15 @@ namespace TTest.Services
 
         public static void RemoveContact(ContactModel contact)
         {
-            if (_contactsService.Contains(contact))
+            try
             {
-                _contactsService.Remove(contact);
-                SaveToList(JsonConvert.SerializeObject(_contactsService));
+                if (_contactsService.Contains(contact))
+                {
+                    _contactsService.Remove(contact);
+                    SaveToList(JsonConvert.SerializeObject(_contactsService));
+                }
             }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); }
         }
     }
 
