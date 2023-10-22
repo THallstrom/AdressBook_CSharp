@@ -12,8 +12,15 @@ namespace TTest.Services
 
         public static void AddToList(ContactModel contact)
         {
-            _contactsService.Add(contact);
-            SaveToList(JsonConvert.SerializeObject(_contactsService));
+            // Lägger till i listan och skickar den vidare för att sparas i filen
+            try
+            {
+                _contactsService.Add(contact);
+                SaveToList(JsonConvert.SerializeObject(_contactsService));
+            }
+            catch (Exception ex) { Debug.WriteLine(ex.Message); }
+
+
         }
 
         public static IEnumerable<ContactModel> GetContacts()
@@ -55,6 +62,7 @@ namespace TTest.Services
 
         public static void EditList(ContactModel updatedContact)
         {
+            // Den här gillar jag inte då det ser ut som att kontaken är uppdaterad innan den kommer hit
             var oldContact = _contactsService.FirstOrDefault(x => x.Id == updatedContact.Id);
             _contactsService.Remove(oldContact);
             _contactsService.Add(updatedContact);
@@ -64,6 +72,7 @@ namespace TTest.Services
 
         public static void RemoveContact(ContactModel contact)
         {
+            // Tar bort kontakten om den finns i listan
             try
             {
                 if (_contactsService.Contains(contact))

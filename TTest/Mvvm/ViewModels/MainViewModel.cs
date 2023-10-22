@@ -21,7 +21,7 @@ namespace TTest.Mvvm.ViewModels
         public MainViewModel()
         {
             UpdateList();
-            ContactService.ContactsUpdated += UpdateList;
+            ContactService.ContactsUpdated += UpdateList; // Här sker uppdateringen av sidan via ContactsUpdated
         }
 
         [RelayCommand]
@@ -32,6 +32,7 @@ namespace TTest.Mvvm.ViewModels
 
         public void UpdateList()
         {
+            // Nollställer listan och lägger in dem på nytt för att ha en korrekt lista att visa
             Contacts.Clear();
             var conta = ContactService.GetContacts();
             foreach (var item in conta)
@@ -43,6 +44,7 @@ namespace TTest.Mvvm.ViewModels
         [RelayCommand]
         async Task DetailPage(ContactModel s)
         {
+            // Skickar info till DetailPage
             await Shell.Current.GoToAsync($"{nameof(DetailPage)}?", new Dictionary<string, object>
             {
                 { "Content" , s }
@@ -52,6 +54,7 @@ namespace TTest.Mvvm.ViewModels
         [RelayCommand]
         public void DeleteItem(ContactModel contact)
         {
+            // Tar bort en contact från listan
             ContactService.RemoveContact(contact);
             UpdateList();
             

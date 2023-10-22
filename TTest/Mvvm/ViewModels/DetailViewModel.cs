@@ -14,6 +14,7 @@ namespace TTest.Mvvm.ViewModels
         [RelayCommand]
         async Task EditPage(ContactModel s)
         {
+            // Skickar vidare infon till EditPage
             await Shell.Current.GoToAsync($"{nameof(EditPage)}?",
                 new Dictionary<string, object>
             {
@@ -24,6 +25,7 @@ namespace TTest.Mvvm.ViewModels
         [RelayCommand]
         async Task Back()
         {
+            // Enkelt att bara komma tillbaka till början igen
             await Shell.Current.GoToAsync("../..");
         }
     }

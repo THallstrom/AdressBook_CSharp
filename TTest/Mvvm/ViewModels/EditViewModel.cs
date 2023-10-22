@@ -16,6 +16,7 @@ namespace TTest.Mvvm.ViewModels
         [RelayCommand]
         async Task GoBack()
         {
+            // Ser till att listan blir uppdaterad samt triggar att mainsidan uppdateras
             ContactService.EditList(Content);
             ContactsUpdated?.Invoke();
             await Shell.Current.GoToAsync("../..");
