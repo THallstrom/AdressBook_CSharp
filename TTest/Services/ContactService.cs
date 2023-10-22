@@ -8,7 +8,7 @@ namespace TTest.Services
     public static class ContactService
     {
         private static List<ContactModel> _contactsService = new();
-        private static readonly string filePath = @"C:\EgnaProjekt\TTest\Adress.json";
+        private static readonly string filePath = @"C:\Nackademin\Adress\TTest\Adress.json";
         public static event Action ContactsUpdated;
 
         public static void AddToList(ContactModel contact)
@@ -47,7 +47,7 @@ namespace TTest.Services
             {
                 if (File.Exists(filePath))
                 {
-                    return File.ReadAllText(filePath);
+                   return File.ReadAllText(filePath);
                 }
             }
             catch (Exception ex) { Debug.WriteLine(ex.Message); }
