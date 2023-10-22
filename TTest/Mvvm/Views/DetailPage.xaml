@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TTest.Mvvm.ViewModels"
+             x:DataType="viewmodel:DetailViewModel"
+             x:Class="TTest.Mvvm.Views.DetailPage"
+             Title="DetailPage">
+
+    <Grid RowDefinitions="auto" Margin="10">
+        <Frame>
+            <Grid RowDefinitions="auto, auto, auto, auto" ColumnDefinitions="*, auto, auto">
+                <Label Grid.Row="0" Text="{Binding Content.Name}"/>
+                <Label Grid.Row="1" Text="{Binding Content.Address}"/>
+                <Grid Grid.Row="2" ColumnDefinitions="auto, *" ColumnSpacing="10">
+                    <Label Grid.Column="0"  Text="{Binding Content.PostNumber}"/>
+                    <Label Grid.Column="1"  Text="{Binding Content.PostAdress}"/>
+                </Grid>
+                <Label Grid.Row="3" Text="{Binding Content.Email}"/>
+                <Button Margin="10" Grid.Column="1" Grid.RowSpan="3" VerticalOptions="Center" Text="GoBack" HorizontalOptions="End" Command="{ Binding BackCommand}"/>
+                <Button Grid.Column="2" Grid.RowSpan="3" VerticalOptions="Center" Text="Edit" HorizontalOptions="End" Command="{Binding EditPageCommand}" CommandParameter="{Binding Content}"/>
+            </Grid>
+        </Frame>
+    </Grid>
+</ContentPage>

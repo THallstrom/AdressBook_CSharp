@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TTest.Mvvm.ViewModels"
+             x:DataType="viewmodel:AddViewModel"
+             xmlns:model="clr-namespace:TTest.Mvvm.Models"
+             x:Class="TTest.Mvvm.Views.AddPage"
+             Title="AddPage">
+    <VerticalStackLayout Margin="10" Spacing="10">
+        <Entry Placeholder="Name" Text="{Binding Contact.Name}"/>
+        <Entry Placeholder="Adress" Text="{Binding Contact.Address}"/>
+        <Grid ColumnDefinitions="auto, *" ColumnSpacing="10">
+            <Entry Grid.Column="0" Placeholder="Post Number" Text="{Binding Contact.PostNumber}"/>
+            <Entry Grid.Column="1"  Placeholder="Post Adress" Text="{Binding Contact.PostAdress}"/>
+        </Grid>
+        <Entry Placeholder="E-mail" Text="{Binding Contact.Email}"/>
+        <Button Text="Save" Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AddViewModel}}, Path=SaveCommand}"
+                CommandParameter="{Binding .}"/>
+    </VerticalStackLayout>
+</ContentPage>

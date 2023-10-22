@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:TTest.Mvvm.ViewModels"
+             x:DataType="viewmodel:EditViewModel"
+             x:Class="TTest.Mvvm.Views.EditPage"
+             Title="EditPage">
+    <VerticalStackLayout Margin="10" Spacing="10">
+        <Entry Text="{Binding Content.Name}" Placeholder="Name"/>
+        <Entry Text="{Binding Content.Address}" Placeholder="Address"/>
+        <Grid ColumnDefinitions="auto, *" ColumnSpacing="10">
+            <Entry Grid.Column="0" Text="{Binding Content.PostNumber}" Placeholder="Post Number"/>
+            <Entry Grid.Column="1" Text="{Binding Content.PostAdress}" Placeholder="Post Address"/>
+        </Grid>
+        <Entry Text="{Binding Content.Email}" Placeholder="E mail"/>
+        <Button Text="Save" Command="{Binding GoBackCommand}"/>
+    </VerticalStackLayout>
+    
+</ContentPage>
